@@ -39,7 +39,7 @@ cmake --build .
 source path/to/emsdk/emsdk_env.sh
 
 # Create a build directory for WebAssembly
-mkdir -p build_wasm && cd build_wasm
+mkdir -p build && cd build
 
 # Configure with Emscripten
 emcmake cmake ..
@@ -68,7 +68,7 @@ After building, you can run the native application from the build directory:
 
 For the WebAssembly version, after building:
 
-1. Navigate to the `build_wasm` directory
+1. Navigate to the `build` directory
 2. Serve the directory using a local web server:
    ```bash
    # Using Python's built-in server
