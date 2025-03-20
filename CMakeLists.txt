@@ -96,6 +96,9 @@ if(EMSCRIPTEN)
     # WebAssembly/Emscripten configuration
     set(CMAKE_EXECUTABLE_SUFFIX ".html")
 
+    # Option to use a custom shell file
+    option(USE_CUSTOM_SHELL "Use a custom HTML shell file" OFF)
+
     target_compile_definitions(${PROJECT_NAME} PRIVATE
         EMSCRIPTEN=1
     )
@@ -110,8 +113,12 @@ if(EMSCRIPTEN)
         "-s MAX_WEBGL_VERSION=2"
         "-s GL_DEBUG=1"
         "-s FULL_ES3=1"
-        #"--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/shell.html"
     )
+
+    # Add shell file option conditionally
+    if(USE_CUSTOM_SHELL)
+        list(APPEND EMSCRIPTEN_LINKER_FLAGS "--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/shell.html")
+    endif()
 
     string(REPLACE ";" " " EMSCRIPTEN_LINKER_FLAGS_STR "${EMSCRIPTEN_LINKER_FLAGS}")
     set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "${EMSCRIPTEN_LINKER_FLAGS_STR}")
