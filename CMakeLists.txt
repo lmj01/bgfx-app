@@ -105,12 +105,12 @@ if(EMSCRIPTEN)
         "-s WASM=1"
         "-s ALLOW_MEMORY_GROWTH=1"
         "-s ASSERTIONS=1"
-        #"--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/shell.html"
         "-s EXPORTED_RUNTIME_METHODS=['cwrap']"
         "-s MIN_WEBGL_VERSION=2"
         "-s MAX_WEBGL_VERSION=2"
         "-s GL_DEBUG=1"
         "-s FULL_ES3=1"
+        #"--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/shell.html"
     )
 
     string(REPLACE ";" " " EMSCRIPTEN_LINKER_FLAGS_STR "${EMSCRIPTEN_LINKER_FLAGS}")
